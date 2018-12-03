@@ -105,4 +105,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Sprites\Bullet_ClipArt.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Sprites\Webp.net-resizeimage.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Sprites\Bullet_Clip_Art.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Sprites\Photon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

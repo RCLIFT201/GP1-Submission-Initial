@@ -47,8 +47,8 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	/* Let the computer pick a random number */
 	random_device rd;    // non-deterministic engine 
 	mt19937 gen{ rd() }; // deterministic engine. For most common uses, std::mersenne_twister_engine, fast and high-quality.
-	uniform_int_distribution<> AsteroidDis{ 1, 5 };
-	uniform_int_distribution<> AsteroidTextDis{ 0, 4 };
+	uniform_int_distribution<> AsteroidDis{ 0, 5 };
+	uniform_int_distribution<> AsteroidTextDis{ 0, 3 };
 
 	theTextureMgr->setRenderer(theRenderer);
 	theFontMgr->initFontLib();
@@ -56,8 +56,8 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	theScore = 0;
 
 	// Store the textures
-	textureName = { "asteroid1", "asteroid2", "asteroid3", "asteroid4", "photon","theRocket","theBackground", "explosion"};
-	texturesToUse = { "Images\\Sprites\\asteroid1.png", "Images\\Sprites\\asteroid2.png", "Images\\Sprites\\asteroid3.png", "Images\\Sprites\\asteroid4.png", "Images\\Sprites\\Photon64x32.png", "Images\\Sprites\\rocketSprite.png", "Images\\Bkg\\starscape1024x768.png", "Images\\Sprites\\explosion.png" };
+	textureName = { "asteroid1", "asteroid2", "asteroid3", "asteroid4", "photon","theRocket", "bullet_clipart", "theBackground", "explosion"};
+	texturesToUse = { "Images\\Sprites\\asteroid1.png", "Images\\Sprites\\asteroid2.png", "Images\\Sprites\\asteroid3.png", "Images\\Sprites\\asteroid4.png", "Images\\Sprites\\Photon64x32.png", "Images\\Sprites\\rocketSprite.png", "Images\\Sprites\\Bullet_ClipArt.png", "Images\\Bkg\\starscape1024x768.png", "Images\\Sprites\\explosion.png" };
 	for (int tCount = 0; tCount < (int)textureName.size(); tCount++)
 	{	
 		theTextureMgr->addTexture(textureName[tCount], texturesToUse[tCount]);
@@ -100,17 +100,18 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 
 	// Create vector array of textures
 
-	for (int astro = 0; astro < 5; astro++)
-	{
-		theAsteroids.push_back(new cAsteroid);
-		theAsteroids[astro]->setSpritePos({ 100 * AsteroidDis(gen), 50 * AsteroidDis(gen) });
-		theAsteroids[astro]->setSpriteTranslation({ 100, -50 });
-		int randAsteroid = AsteroidTextDis(gen);
-		theAsteroids[astro]->setTexture(theTextureMgr->getTexture(textureName[randAsteroid]));
-		theAsteroids[astro]->setSpriteDimensions(theTextureMgr->getTexture(textureName[randAsteroid])->getTWidth(), theTextureMgr->getTexture(textureName[randAsteroid])->getTHeight());
-		theAsteroids[astro]->setAsteroidVelocity(200);
-		theAsteroids[astro]->setActive(true);
-	}
+
+		for (int astro = 0; astro < 1; astro++)
+		{
+			theAsteroids.push_back(new cAsteroid);
+			theAsteroids[astro]->setSpritePos({ 400, 0 });
+			theAsteroids[astro]->setSpriteTranslation({ 0, -60 });
+			int randAsteroid = AsteroidTextDis(gen);
+			theAsteroids[astro]->setTexture(theTextureMgr->getTexture(textureName[randAsteroid]));
+			theAsteroids[astro]->setSpriteDimensions(theTextureMgr->getTexture(textureName[randAsteroid])->getTWidth(), theTextureMgr->getTexture(textureName[randAsteroid])->getTHeight());
+			theAsteroids[astro]->setAsteroidVelocity(10);
+			theAsteroids[astro]->setActive(true);
+		}
 
 }
 
@@ -315,13 +316,13 @@ bool cGame::getInput(bool theLoop)
 				break;
 				case SDLK_RIGHT:
 				{
-					theRocket.setRocketMove(-1); // Allows player to move right
+					theRocket.setRocketMove(-2.5f); // Allows player to move right
 				}
 				break;
 
 				case SDLK_LEFT:
 				{
-					theRocket.setRocketMove(1); // Allows player to move left
+					theRocket.setRocketMove(2.5f); // Allows player to move left
 				}
 				break;
 				case SDLK_SPACE:
@@ -330,9 +331,9 @@ bool cGame::getInput(bool theLoop)
 					int numBullets = theBullets.size() - 1;
 					theBullets[numBullets]->setSpritePos({ theRocket.getBoundingRect().x + theRocket.getSpriteCentre().x, theRocket.getBoundingRect().y + theRocket.getSpriteCentre().y });
 					theBullets[numBullets]->setSpriteTranslation({ 50, 50 });
-					theBullets[numBullets]->setTexture(theTextureMgr->getTexture("photon"));
-					theBullets[numBullets]->setSpriteDimensions(theTextureMgr->getTexture("photon")->getTWidth(), theTextureMgr->getTexture("photon")->getTHeight());
-					theBullets[numBullets]->setBulletVelocity(50);
+					theBullets[numBullets]->setTexture(theTextureMgr->getTexture("bullet_clipart"));
+					theBullets[numBullets]->setSpriteDimensions(theTextureMgr->getTexture("bullet_clipart")->getTWidth(), theTextureMgr->getTexture("bullet_clipart")->getTHeight());
+					theBullets[numBullets]->setBulletVelocity(15);
 					theBullets[numBullets]->setSpriteRotAngle(theRocket.getSpriteRotAngle());
 					theBullets[numBullets]->setActive(true);
 					cout << "Bullet added to Vector at position - x: " << theRocket.getBoundingRect().x << " y: " << theRocket.getBoundingRect().y << endl;
