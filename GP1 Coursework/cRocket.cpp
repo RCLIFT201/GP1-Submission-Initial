@@ -23,7 +23,7 @@ Update the sprite position
 
 void cRocket::update(double deltaTime)
 {
-	auto rads = PI / 180.0f * (this->getSpriteRotAngle() - 90.0f);
+	auto rads = PI / 90.0f * (this->getSpriteRotAngle() - 90.0f); // Changed 180.0f to 90.0f to allow player to move only left or right
 
 	FPoint direction = { 0.0f, 0.0f };
 	direction.X = (float)(cos(rads));

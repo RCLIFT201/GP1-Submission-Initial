@@ -91,7 +91,7 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	spriteBkgd.setTexture(theTextureMgr->getTexture("theBackground"));
 	spriteBkgd.setSpriteDimensions(theTextureMgr->getTexture("theBackground")->getTWidth(), theTextureMgr->getTexture("theBackground")->getTHeight());
 
-	theRocket.setSpritePos({ 500, 350 });
+	theRocket.setSpritePos({ 500, 640 });
 	theRocket.setTexture(theTextureMgr->getTexture("theRocket"));
 	theRocket.setSpriteDimensions(theTextureMgr->getTexture("theRocket")->getTWidth(), theTextureMgr->getTexture("theRocket")->getTHeight());
 	theRocket.setRocketVelocity(100);
@@ -304,24 +304,24 @@ bool cGame::getInput(bool theLoop)
 					break;
 				case SDLK_DOWN:
 				{
-					theRocket.setRocketMove(1);
+					
 				}
 				break;
 
 				case SDLK_UP:
 				{
-					theRocket.setRocketMove(-1);
+					
 				}
 				break;
 				case SDLK_RIGHT:
 				{
-					theRocket.setSpriteRotAngle(theRocket.getSpriteRotAngle() +5);
+					theRocket.setRocketMove(-1); // Allows player to move right
 				}
 				break;
 
 				case SDLK_LEFT:
 				{
-					theRocket.setSpriteRotAngle(theRocket.getSpriteRotAngle() - 5);
+					theRocket.setRocketMove(1); // Allows player to move left
 				}
 				break;
 				case SDLK_SPACE:
