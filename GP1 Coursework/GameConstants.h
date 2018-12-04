@@ -41,6 +41,12 @@ typedef struct
 	float  Y;
 }FPoint;
 
+typedef struct
+{
+	int X;
+	int Y;
+}IPoint;
+
 inline SDL_Point operator+(SDL_Point const &a, SDL_Point const &b)
 {
 	return SDL_Point{ a.x + b.x , a.y + b.y };

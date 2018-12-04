@@ -118,5 +118,43 @@
     <Image Include="Images\Sprites\Photon.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Images\Sprites\Tank.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Sprites\Background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Sprites\Enemy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Sprites\Red_Rob.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Sprites\star.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\shot007.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\InGameTheme.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\MenuMusic.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\laserShot.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\explosion2.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Audio\explosion2.aiff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\retro.ttf" />
   </ItemGroup>
 </Project>
